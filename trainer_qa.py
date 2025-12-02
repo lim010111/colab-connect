@@ -60,7 +60,7 @@ class QuestionAnsweringTrainer(Trainer):
                 description="Evaluation",
                 # No point gathering the predictions if there are no metrics, otherwise we defer to
                 # self.args.prediction_loss_only
-                prediction_loss_only=None,
+                prediction_loss_only=False,
                 ignore_keys=ignore_keys,
             )
         finally:
@@ -109,6 +109,7 @@ class QuestionAnsweringTrainer(Trainer):
             output = eval_loop(
                 test_dataloader,
                 description="Prediction",
+                prediction_loss_only=False,
                 ignore_keys=ignore_keys,
             )
         finally:
